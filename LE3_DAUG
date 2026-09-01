@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+
+int main() {
+char name[90];
+char section[50];
+int N1;
+int N2;
+
+printf("Enter Complete Name: ");
+fgets(name, sizeof(name), stdin);
+
+printf("Enter Section: %", section);
+fgets(section, sizeof(section), stdin);
+
+printf("\n\nEnter first number: ");
+scanf("%d", &N1);
+
+printf("Enter second number: ");
+scanf("%d", &N2);
+
+int plus = N1 + N2;
+int minus = N1 - N2;
+int multiply = N1 * N2;
+float divide = N1 / (float) N2;
+
+printf("\n\n Student Calculator\n");
+printf("Student name: %s", name);
+printf("Section: %s", section);
+printf(" Results:\n");
+printf("%d + %d = %d\n", N1, N2, plus);
+printf("%d - %d = %d\n", N1, N2, minus);
+printf("%d * %d = %d\n", N1, N2, multiply);
+printf("%d / %d = %.2    f\n", N1, N2, divide);
+
+
+
+
+
+
+}
