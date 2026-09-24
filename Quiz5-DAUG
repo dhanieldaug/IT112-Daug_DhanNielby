@@ -1,0 +1,44 @@
+#include <stdio.stdio.h>
+
+int main() {
+    float daily_savings = 0.0;
+    float total_savings = 0.0;
+    float daily_average = 0.0;
+    float target_goal = 500.0;
+
+    // Header Display
+    printf("=====================================\n");
+    printf("        DAILY SAVINGS TRACKER        \n");
+    printf("=====================================\n");
+
+    // Loop for Days 1 through 7
+    for (int day = 1; day <= 7; day++) {
+        printf("Enter savings for Day %d: ", day);
+        scanf("%f", &daily_savings);
+        total_savings += daily_savings; // Accumulate running total
+    }
+
+    // Calculations
+    daily_average = total_savings / 7.0;
+
+    // Summary Display
+    printf("\n=====================================\n");
+    printf("           SAVINGS SUMMARY           \n");
+    printf("=====================================\n");
+    printf("Total Savings: PHP %.2f\n", total_savings);
+    printf("Daily Average: PHP %.2f\n", daily_average);
+
+    // Goal Check using if-else
+    if (total_savings >= target_goal) {
+        printf("Status: GOAL REACHED\n");
+        printf("Congratulations! You have reached your savings goal.\n");
+    } else {
+        float shortfall = target_goal - total_savings;
+        printf("Status: GOAL NOT REACHED\n");
+        printf("You need PHP %.2f more to reach your goal.\n", shortfall);
+    }
+
+    printf("=====================================\n");
+
+    return 0;
+}
