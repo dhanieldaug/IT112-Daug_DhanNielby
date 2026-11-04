@@ -1,0 +1,74 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    FILE *file;
+    int numStudents;
+    char name[100];
+    int age;
+    char course[100];
+    char line[256];
+
+    // --- PHASE 1: WRITING TO THE FILE ---
+    printf("Writing Student Database:\n");
+    printf("How many students do you want to record? ");
+    if (scanf("%d", &numStudents) != 1) {
+        printf("Invalid input.\n");
+        return 1;
+    }
+
+    // Open the file in write mode ("w")
+    file = fopen("student_records.txt", "w");
+    if (file == NULL) {
+        printf("Error opening file for writing!\n");
+        return 1;
+    }
+
+    // Loop to gather data and write to file
+    for (int i = 0; i < numStudents; i++) {
+        printf("\nStudent %d\n", i + 1);
+        
+        // " %[^\n]" reads strings with spaces and consumes any leftover newline characters
+        printf("Enter Name: ");
+        scanf(" %[^\n]", name);
+        
+        printf("Enter Age: ");
+        scanf("%d", &age);
+        
+        printf("Enter Course: ");
+        scanf(" %[^\n]", course);
+
+        // Write the data into the file using the exact requested format
+        fprintf(file, "Student %d\n", i + 1);
+        fprintf(file, "Name: %s\n", name);
+        fprintf(file, "Age: %d\n", age);
+        fprintf(file, "Course: %s\n\n", course);
+    }
+
+    // Close the file after writing
+    fclose(file);
+    printf("\nStudent database successfully saved to file.\n\n");
+
+
+    // --- PHASE 2: READING FROM THE FILE ---
+    printf("Reading Student Database:\n");
+    printf("-------------------------\n");
+
+    // Open the text file in read mode ("r")
+    file = fopen("student_records.txt", "r");
+    if (file == NULL) {
+        printf("Error opening file for reading!\n");
+        return 1;
+    }
+
+    // Read the file line-by-line using fgets() and print to terminal
+    while (fgets(line, sizeof(line), file) != NULL) {
+        printf("%s", line);
+    }
+
+    // Close the file after reading
+    fclose(file);
+    printf("-------------------------\n");
+
+    return 0;
+}
