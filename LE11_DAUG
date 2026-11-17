@@ -1,0 +1,49 @@
+#include <stdio.h>
+
+int main() {
+    FILE *file;
+    int idNumber;
+    char completeName[100];
+    char section[50];
+    int choice;
+
+    // Open the file in append mode ("a") so existing records are preserved
+    file = fopen("student_records.txt", "a");
+    if (file == NULL) {
+        printf("Error opening file!\n");
+        return 1;
+    }
+
+    do {
+        // Get student details
+        printf("Enter Student Number: ");
+        scanf("%d", &idNumber);
+        getchar(); // Consume the leftover newline character from scanf
+
+        printf("Enter Complete Name: ");
+        scanf(" %[^\n]", completeName); // Reads string including spaces
+
+        printf("Enter Section: ");
+        scanf(" %[^\n]", section);
+
+        // Write formatted student record to student_records.txt
+        fprintf(file, "ID Number: %d\n", idNumber);
+        fprintf(file, "Complete Name: %s\n", completeName);
+        fprintf(file, "Section: %s\n\n", section);
+
+        printf("\nRecord added and saved successfully.\n\n");
+
+        // Ask the user if they want to continue
+        printf("Add another student? [Enter 1 for Yes, 0 for No]: ");
+        scanf("%d", &choice);
+        printf("\n");
+
+    } while (choice == 1);
+
+    // Close the file to ensure all data is properly saved
+    fclose(file);
+
+    printf("All student records have been saved.\n");
+
+    return 0;
+}
